@@ -1,0 +1,27 @@
+{
+  "name": "kabanery-glare",
+  "version": "0.0.1",
+  "description": "A web component library based on kabanery",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/function/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoveKino/kabanery-glare.git"
+  },
+  "keywords": [
+    "kabanery",
+    "web",
+    "component"
+  ],
+  "author": "ddchen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/LoveKino/kabanery-glare/issues"
+  },
+  "homepage": "https://github.com/LoveKino/kabanery-glare#readme",
+  "dependencies": {
+    "kabanery": "^0.2.22"
+  }
+}
