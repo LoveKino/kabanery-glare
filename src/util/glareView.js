@@ -1,8 +1,23 @@
 const {
-  view
+  view,
+  parseArgs,
+  n
 } = require('kabanery');
+const {
+  mergeDeep
+} = require('./util');
+const uuidv4 = require('uuid/v4');
+
+const defaultTheme = require('../theme/base')();
+const noop = () => {};
 
 module.exports = (render, {
+  /**
+   * id rule: (1) specify a name, like 'input', 'text'
+   *          (2) auto generate an id
+   * TODO: avoid repeated name by using global view map
+   */
+  id = uuidv4(),
   defaultProps
 } = {}) => {
   if (typeof render !== 'function') {
@@ -10,33 +25,42 @@ module.exports = (render, {
   }
   return view(({
     props,
-    onChange,
+    onChange = noop, // should only called on props changed, need to compare old props and new props
+    onEvent = noop, // any event happened
+    theme = defaultTheme, // control every detail style
     children
-  }, ctx) => {
-    // merge props with default props
-    const mergedProps = mergeDeep(defaultProps, props);
+  } = {}, ctx) => {
+    /**
+     * priority:
+     *  props >> defaultProps >> theme
+     */
+    const mergedProps = mergeDeep(mergeDeep({
+      style: theme[id]
+    }, defaultProps), props);
+
+    const glareNode = (...args) => {
+      const {
+        tagName,
+        attributes,
+        childs
+      } = parseArgs(args);
+      if (typeof tagName === 'function') { // TODO check is glare view or not
+        return tagName(Object.assign({
+          children: childs,
+          theme // extend theme to all glare view children
+        }, attributes));
+      } else {
+        return n(tagName, attributes, childs);
+      }
+    };
+
     return render({
       props: mergedProps,
       onChange,
-      children
+      onEvent,
+      theme,
+      children,
+      n: glareNode
     }, ctx);
   });
-};
-
-/**
- * merge two objects
- */
-const mergeDeep = (obj1, obj2) => {
-  if (obj1 === null || obj1 === undefined) return obj2;
-  if (obj2 === null || obj2 === undefined) return obj1;
-
-  if (typeof obj1 === 'object' && typeof obj2 === 'object') {
-    const newObj = Object.assign({}, obj1); // copy obj1
-    for (let key in obj2) {
-      newObj[key] = mergeDeep(newObj[key], obj2[key]);
-    }
-    return newObj;
-  }
-
-  return obj2;
 };

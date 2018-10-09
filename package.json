@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/LoveKino/kabanery-glare#readme",
   "dependencies": {
-    "kabanery": "^0.2.22"
+    "kabanery": "^0.2.22",
+    "uuid": "^3.3.2"
   }
 }

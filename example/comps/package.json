@@ -1,0 +1,18 @@
+{
+  "name": "kabanery-glare-comps",
+  "version": "0.0.1",
+  "description": "kabanery glare comps demonstrate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ddchen",
+  "license": "MIT",
+  "devDependencies": {
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {
+    "kabanery": "^0.2.22"
+  }
+}
