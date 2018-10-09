@@ -1,4 +1,4 @@
-const Input = require('../../src/base/Input');
+const TextField = require('../../src/base/TextField');
 
 const {
   mount,
@@ -6,5 +6,5 @@ const {
 } = require('kabanery');
 
 mount(n('div', [
-  Input()
+  TextField()
 ]), document.body);

@@ -16,15 +16,21 @@ module.exports = (basics = {
   }
 }) => {
   return {
-    'input': {
-      width: 200,
-      height: 30,
-      margin: 0,
-      padding: '0 6px 0 6px',
-      border: 'none',
-      borderBottom: `1px solid ${basics.line.color.normal}`,
-      fontSize: basics.font.size.normal,
-      outline: 'none'
+    TextField: {
+      input: {
+        width: 200,
+        height: 30,
+        margin: 0,
+        padding: '0 6px 0 6px',
+        border: 'none',
+        borderBottom: `1px solid ${basics.line.color.normal}`,
+        fontSize: basics.font.size.normal,
+        outline: 'none'
+      },
+
+      focusLine: {
+        borderBottom: `2px solid ${basics.line.color.normal}`,
+      }
     }
   };
 };

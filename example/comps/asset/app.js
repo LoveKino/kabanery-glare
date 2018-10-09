@@ -413,14 +413,14 @@ eval("var rng = __webpack_require__(/*! ./lib/rng */ \"../../node_modules/uuid/l
 
 /***/ }),
 
-/***/ "../../src/base/Input.js":
-/*!**************************************************************************************!*\
-  !*** /Users/yuer/workspaceforme/ddki/tech/base/web/kabanery-glare/src/base/Input.js ***!
-  \**************************************************************************************/
+/***/ "../../src/base/TextField.js":
+/*!******************************************************************************************!*\
+  !*** /Users/yuer/workspaceforme/ddki/tech/base/web/kabanery-glare/src/base/TextField.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const glareView = __webpack_require__(/*! ../util/glareView */ \"../../src/util/glareView.js\");\n\nmodule.exports = glareView(({\n  props,\n  onChange,\n  onEvent,\n  n\n}) => {\n  return n('input', Object.assign({}, props, {\n    oninput: (e) => {\n      if (e.target.value !== props.value) {\n        props.value = e.target.value;\n        onChange(props, e); // onChange should always report the change\n      }\n\n      onEvent({\n        type: 'input',\n        sourceEvent: e\n      });\n    }\n    // TODO other events\n  }));\n}, {\n  id: 'input',\n  defaultProps: {\n    placeholder: '',\n    value: '',\n    type: 'text'\n  }\n});\n\n\n//# sourceURL=webpack:////Users/yuer/workspaceforme/ddki/tech/base/web/kabanery-glare/src/base/Input.js?");
+eval("const glareView = __webpack_require__(/*! ../util/glareView */ \"../../src/util/glareView.js\");\n\nmodule.exports = glareView(({\n  props,\n  onChange,\n  onEvent,\n  n\n}) => {\n  return n('div', {\n    style: {\n      display: 'inline-block'\n    }\n  }, [\n    n('input', {\n      style: props.style.input,\n      value: props.value,\n      type: props.type,\n      placeholder: props.placeholder,\n      // TODO other events\n      oninput: (e) => {\n        if (e.target.value !== props.value) {\n          props.value = e.target.value;\n          onChange(props, e); // onChange should always report the change\n        }\n\n        onEvent({\n          type: 'input',\n          sourceEvent: e\n        });\n      },\n      onfocusin: (e) => {\n        onEvent({\n          type: 'focus',\n          sourceEvent: e\n        });\n      }\n    }),\n\n    n('div', {\n      style: props.focused ? props.style.focusLine : ''\n    })\n  ]);\n}, {\n  id: 'TextField',\n  defaultProps: {\n    placeholder: '',\n    value: '',\n    type: 'text'\n  }\n});\n\n\n//# sourceURL=webpack:////Users/yuer/workspaceforme/ddki/tech/base/web/kabanery-glare/src/base/TextField.js?");
 
 /***/ }),
 
@@ -431,7 +431,7 @@ eval("const glareView = __webpack_require__(/*! ../util/glareView */ \"../../src
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-eval("/**\n * define the default style for kabanery-glare\n */\n\nmodule.exports = (basics = {\n  font: {\n    size: {\n      normal: 14\n    }\n  },\n\n  line: {\n    color: {\n      normal: 'rgb(138,138,138)'\n    }\n  }\n}) => {\n  return {\n    'input': {\n      width: 200,\n      height: 30,\n      margin: 0,\n      padding: '0 6px 0 6px',\n      border: 'none',\n      borderBottom: `1px solid ${basics.line.color.normal}`,\n      fontSize: basics.font.size.normal,\n      outline: 'none'\n    }\n  };\n};\n\n\n//# sourceURL=webpack:////Users/yuer/workspaceforme/ddki/tech/base/web/kabanery-glare/src/theme/base.js?");
+eval("/**\n * define the default style for kabanery-glare\n */\n\nmodule.exports = (basics = {\n  font: {\n    size: {\n      normal: 14\n    }\n  },\n\n  line: {\n    color: {\n      normal: 'rgb(138,138,138)'\n    }\n  }\n}) => {\n  return {\n    TextField: {\n      input: {\n        width: 200,\n        height: 30,\n        margin: 0,\n        padding: '0 6px 0 6px',\n        border: 'none',\n        borderBottom: `1px solid ${basics.line.color.normal}`,\n        fontSize: basics.font.size.normal,\n        outline: 'none'\n      },\n\n      focusLine: {\n        borderBottom: `2px solid ${basics.line.color.normal}`,\n      }\n    }\n  };\n};\n\n\n//# sourceURL=webpack:////Users/yuer/workspaceforme/ddki/tech/base/web/kabanery-glare/src/theme/base.js?");
 
 /***/ }),
 
@@ -464,7 +464,7 @@ eval("/**\n * merge two objects\n */\nconst mergeDeep = (obj1, obj2) => {\n  if 
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("const Input = __webpack_require__(/*! ../../src/base/Input */ \"../../src/base/Input.js\");\n\nconst {\n  mount,\n  n\n} = __webpack_require__(/*! kabanery */ \"./node_modules/kabanery/index.js\");\n\nmount(n('div', [\n  Input()\n]), document.body);\n\n\n//# sourceURL=webpack:///./index.js?");
+eval("const TextField = __webpack_require__(/*! ../../src/base/TextField */ \"../../src/base/TextField.js\");\n\nconst {\n  mount,\n  n\n} = __webpack_require__(/*! kabanery */ \"./node_modules/kabanery/index.js\");\n\nmount(n('div', [\n  TextField()\n]), document.body);\n\n\n//# sourceURL=webpack:///./index.js?");
 
 /***/ }),
 
