@@ -5,7 +5,7 @@ const {
 } = require('kabanery');
 const uuidv4 = require('uuid/v4');
 
-const defaultTheme = require('../theme/base')();
+const defaultTheme = require('../theme/material')();
 const noop = () => {};
 
 const copyTo = (obj1, obj2) => {
@@ -67,6 +67,13 @@ module.exports = (render, {
         return n(tagName, attributes, childs);
       }
     };
+
+    /**
+     * bind props of current view with child view
+     *
+     * @param propsPath string a json path
+     */
+    data.bn = (childView, propsPath, children) => {};
 
     return render(data, ctx);
   });
