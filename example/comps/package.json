@@ -13,6 +13,6 @@
     "webpack-cli": "^3.1.2"
   },
   "dependencies": {
-    "kabanery": "^0.2.22"
+    "kabanery": "^0.2.24"
   }
 }

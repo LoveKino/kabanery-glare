@@ -45,10 +45,13 @@ module.exports = (render, {
         childs
       } = parseArgs(args);
       if (typeof tagName === 'function') { // TODO check is glare view or not
-        return tagName(Object.assign({
-          children: childs,
-          theme // extend theme to all glare view children
-        }, attributes));
+        return tagName({
+          props: attributes.props,
+          onChange: attributes.onChange,
+          onEvent: attributes.onEvent,
+          theme: attributes.theme, // extend theme to all glare view children
+          children: childs
+        });
       } else {
         return n(tagName, attributes, childs);
       }
