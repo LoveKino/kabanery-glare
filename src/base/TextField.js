@@ -5,11 +5,9 @@ module.exports = glareView(({
   onChange,
   onEvent,
   n
-}) => {
+}, ctx) => {
   return n('div', {
-    style: {
-      display: 'inline-block'
-    }
+    style: props.style.box
   }, [
     n('input', {
       style: props.style.input,
@@ -28,16 +26,52 @@ module.exports = glareView(({
           sourceEvent: e
         });
       },
+
       onfocusin: (e) => {
         onEvent({
-          type: 'focus',
+          type: 'focusin',
           sourceEvent: e
         });
+        ctx.update('props.activeStatus', 'focused');
+      },
+
+      onfocusout: (e) => {
+        onEvent({
+          type: 'focusout',
+          sourceEvent: e
+        });
+        ctx.update('props.activeStatus', 'unfocused');
+      },
+
+      onmouseover: (e) => {
+        onEvent({
+          type: 'mouseover',
+          sourceEvent: e
+        });
+        if (props.activeStatus === 'unfocused') {
+          ctx.update('props.activeStatus', 'hover');
+        }
+      },
+
+      onmouseout: (e) => {
+        onEvent({
+          type: 'mouseout',
+          sourceEvent: e
+        });
+        if (props.activeStatus === 'hover') {
+          ctx.update('props.activeStatus', 'unfocused');
+        }
       }
     }),
 
+    // hover line
     n('div', {
-      style: props.focused ? props.style.focusLine : ''
+      style: props.activeStatus === 'hover' ? props.style.hover : ''
+    }),
+
+    // focus line
+    n('div', {
+      style: props.activeStatus === 'focused' ? props.style.focus.active : props.style.focus.unactive
     })
   ]);
 }, {
@@ -45,6 +79,7 @@ module.exports = glareView(({
   defaultProps: {
     placeholder: '',
     value: '',
-    type: 'text'
+    type: 'text',
+    activeStatus: 'unfocused'
   }
 });

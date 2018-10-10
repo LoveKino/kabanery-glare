@@ -3,13 +3,26 @@ const {
   parseArgs,
   n
 } = require('kabanery');
-const {
-  mergeDeep
-} = require('./util');
 const uuidv4 = require('uuid/v4');
 
 const defaultTheme = require('../theme/base')();
 const noop = () => {};
+
+const copyTo = (obj1, obj2) => {
+  for (let name in obj2) {
+    if (obj2[name] !== null && obj2[name] !== undefined) {
+      if (obj1[name] === null || obj1[name] === undefined) {
+        obj1[name] = obj2[name];
+      } else {
+        if (typeof obj1[name] === 'object' && typeof obj2[name] === 'object') {
+          obj1[name] = copyTo(obj1[name], obj2[name]);
+        }
+      }
+    }
+  }
+
+  return obj1;
+};
 
 module.exports = (render, {
   /**
@@ -23,22 +36,20 @@ module.exports = (render, {
   if (typeof render !== 'function') {
     throw new Error(`Expect function for glare view render, but got ${render}`);
   }
-  return view(({
-    props,
-    onChange = noop, // should only called on props changed, need to compare old props and new props
-    onEvent = noop, // any event happened
-    theme = defaultTheme, // control every detail style
-    children
-  } = {}, ctx) => {
+  return view((data, ctx) => {
+    data.onChange = data.onChange || noop;
+    data.onEvent = data.onEvent || noop;
+    data.theme = data.theme || defaultTheme;
     /**
      * priority:
      *  props >> defaultProps >> theme
      */
-    const mergedProps = mergeDeep(mergeDeep({
-      style: theme[id]
-    }, defaultProps), props);
+    copyTo(data.props, defaultProps);
+    copyTo(data.props, {
+      style: data.theme[id]
+    });
 
-    const glareNode = (...args) => {
+    data.n = (...args) => {
       const {
         tagName,
         attributes,
@@ -57,13 +68,6 @@ module.exports = (render, {
       }
     };
 
-    return render({
-      props: mergedProps,
-      onChange,
-      onEvent,
-      theme,
-      children,
-      n: glareNode
-    }, ctx);
+    return render(data, ctx);
   });
 };

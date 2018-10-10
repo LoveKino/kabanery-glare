@@ -14,13 +14,9 @@ const Page = glareView(({
 }, ctx) => {
   return n('p', [
     n(TextField, {
-      props: {
-        value: props.name
-      },
-      onChange: ({
-        value
-      }) => {
-        ctx.update('props.name', value);
+      props: props.name,
+      onChange: (newTextProps) => {
+        ctx.update('props.name', newTextProps);
       }
     })
   ]);
@@ -29,7 +25,9 @@ const Page = glareView(({
 mount(n('div', [
   Page({
     props: {
-      name: '123'
+      name: {
+        value: '123'
+      }
     }
   })
 ]), document.body);
