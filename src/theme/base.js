@@ -5,7 +5,11 @@
 module.exports = (basics = {
   font: {
     size: {
-      normal: 14
+      normal: '1rem',
+      small: '0.75rem'
+    },
+    color: {
+      placeholder: 'rgba(0, 0, 0, 0.54)'
     }
   },
 
@@ -20,15 +24,51 @@ module.exports = (basics = {
   return {
     TextField: {
       box: {
-        display: 'inline-block',
+        display: 'inline-flex',
         position: 'relative',
         width: 200,
-        height: 30
+        height: 48,
+        cursor: 'text'
+      },
+
+      placeholder: {
+        place: {
+          position: 'absolute',
+          left: 0,
+          fontSize: basics.font.size.normal,
+          color: basics.font.color.placeholder,
+          cursor: 'text',
+          transform: 'translate(0, 24px) scale(1)',
+          transition: 'color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
+        },
+
+        active: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          fontSize: basics.font.size.normal,
+          color: basics.line.color.light,
+          transform: 'translate(0, 1.5px) scale(0.75)',
+          transition: 'color 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms,transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
+        },
+
+        placeContent: {
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          transform: 'translate(0, 1.5px) scale(0.75)',
+          fontSize: basics.font.size.normal,
+          color: basics.font.color.placeholder,
+          cursor: 'text'
+        }
       },
 
       input: {
         width: '100%',
-        height: '100%',
+        height: 30,
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
         margin: 0,
         padding: '0 6px 0 6px',
         border: 'none',

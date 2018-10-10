@@ -7,13 +7,57 @@ module.exports = glareView(({
   n
 }, ctx) => {
   return n('div', {
-    style: props.style.box
+    style: props.style.box,
+
+    onclick: (e) => {
+      onEvent({
+        type: 'click',
+        sourceEvent: e
+      });
+      ctx.update('props.activeStatus', 'focused');
+    },
+
+    onfocusin: (e) => {
+      onEvent({
+        type: 'focusin',
+        sourceEvent: e
+      });
+      ctx.update('props.activeStatus', 'focused');
+    },
+
+    onfocusout: (e) => {
+      onEvent({
+        type: 'focusout',
+        sourceEvent: e
+      });
+      ctx.update('props.activeStatus', 'unfocused');
+    },
+
+    onmouseover: (e) => {
+      onEvent({
+        type: 'mouseover',
+        sourceEvent: e
+      });
+      if (props.activeStatus === 'unfocused') {
+        ctx.update('props.activeStatus', 'hover');
+      }
+    },
+
+    onmouseout: (e) => {
+      onEvent({
+        type: 'mouseout',
+        sourceEvent: e
+      });
+      if (props.activeStatus === 'hover') {
+        ctx.update('props.activeStatus', 'unfocused');
+      }
+    }
   }, [
+    // input box
     n('input', {
       style: props.style.input,
       value: props.value,
       type: props.type,
-      placeholder: props.placeholder,
       // TODO other events
       oninput: (e) => {
         if (e.target.value !== props.value) {
@@ -25,44 +69,12 @@ module.exports = glareView(({
           type: 'input',
           sourceEvent: e
         });
-      },
-
-      onfocusin: (e) => {
-        onEvent({
-          type: 'focusin',
-          sourceEvent: e
-        });
-        ctx.update('props.activeStatus', 'focused');
-      },
-
-      onfocusout: (e) => {
-        onEvent({
-          type: 'focusout',
-          sourceEvent: e
-        });
-        ctx.update('props.activeStatus', 'unfocused');
-      },
-
-      onmouseover: (e) => {
-        onEvent({
-          type: 'mouseover',
-          sourceEvent: e
-        });
-        if (props.activeStatus === 'unfocused') {
-          ctx.update('props.activeStatus', 'hover');
-        }
-      },
-
-      onmouseout: (e) => {
-        onEvent({
-          type: 'mouseout',
-          sourceEvent: e
-        });
-        if (props.activeStatus === 'hover') {
-          ctx.update('props.activeStatus', 'unfocused');
-        }
       }
     }),
+
+    n('label', {
+      style: props.activeStatus === 'focused' ? props.style.placeholder.active : props.value !== '' ? props.style.placeholder.placeContent: props.style.placeholder.place
+    }, `${props.placeholder}`),
 
     // hover line
     n('div', {
