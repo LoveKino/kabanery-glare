@@ -3,6 +3,10 @@
  */
 
 module.exports = (basics = {
+  box: {
+    margin: 0
+  },
+
   font: {
     size: {
       normal: '1rem',
@@ -28,7 +32,10 @@ module.exports = (basics = {
         position: 'relative',
         width: 200,
         height: 48,
-        cursor: 'text'
+        cursor: 'text',
+        margin: basics.box.margin,
+        padding: 0,
+        boxSizing: 'border-box'
       },
 
       placeholder: {
@@ -103,6 +110,48 @@ module.exports = (basics = {
           borderBottom: `2px solid ${basics.line.color.light}`,
           transform: 'scaleX(0)',
           transition: 'transform 200ms cubic-bezier(0.0, 0, 0.2, 1) 0ms'
+        }
+      }
+    },
+
+    Button: {
+      box: {
+        normal: {
+          margin: basics.box.margin,
+          boxSizing: 'border-box',
+          padding: '8px 16px',
+          minWidth: 64,
+          minHeight: 36,
+          fontSize: '0.875rem',
+          cursor: 'pointer',
+          letterSpacing: '0.02857em',
+          fontWeight: '500',
+          borderRadius: 4,
+          textTransform: 'uppercase',
+          lineHeight: '1.5',
+          color: 'rgba(0, 0, 0, 0.87)',
+          border: 0,
+          outline: 0
+        },
+
+        hover: {
+          margin: basics.box.margin,
+          boxSizing: 'border-box',
+          padding: '8px 16px',
+          minWidth: 64,
+          minHeight: 36,
+          fontSize: '0.875rem',
+          cursor: 'pointer',
+          letterSpacing: '0.02857em',
+          fontWeight: '500',
+          borderRadius: 4,
+          textTransform: 'uppercase',
+          lineHeight: '1.5',
+          color: 'rgba(0, 0, 0, 0.87)',
+          border: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.08)',
+          textDecoration: 'none',
+          outline: 0
         }
       }
     }

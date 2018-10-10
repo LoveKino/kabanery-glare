@@ -73,7 +73,7 @@ module.exports = glareView(({
     }),
 
     n('label', {
-      style: props.activeStatus === 'focused' ? props.style.placeholder.active : props.value !== '' ? props.style.placeholder.placeContent: props.style.placeholder.place
+      style: props.activeStatus === 'focused' ? props.style.placeholder.active : props.value !== '' ? props.style.placeholder.placeContent : props.style.placeholder.place
     }, `${props.placeholder}`),
 
     // hover line

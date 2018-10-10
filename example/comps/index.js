@@ -1,4 +1,5 @@
 const TextField = require('../../src/base/TextField');
+const Button = require('../../src/base/button');
 const {
   glareView
 } = require('../../src');
@@ -20,7 +21,11 @@ const Page = glareView(({
       }
     }),
     n('br'),
-    n('code', `${props.name.value}`)
+    n('code', `${props.name.value}`),
+    n('br'),
+    n(Button, {
+      props: props.button
+    }, 'a button')
   ]);
 });
 
@@ -30,7 +35,8 @@ mount(n('div', [
       name: {
         value: '',
         placeholder: 'Test'
-      }
+      },
+      button: {}
     }
   })
 ]), document.body);
