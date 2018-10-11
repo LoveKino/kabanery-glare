@@ -23,8 +23,14 @@ const Page = glareView(({
     n('code', `${props.name.value}`),
     n('br'),
     bn(Button, {
-      propsPath: 'button'
-    }, 'a button')
+      propsPath: 'button1'
+    }, 'default button'),
+    bn(Button, {
+      propsPath: 'button2'
+    }, 'primary button'),
+    bn(Button, {
+      propsPath: 'button3'
+    }, 'secondary button')
   ]);
 });
 
@@ -35,7 +41,13 @@ mount(n('div', [
         value: '',
         placeholder: 'Test'
       },
-      button: {}
+      button1: {},
+      button2: {
+        color: 'primary'
+      },
+      button3: {
+        color: 'secondary'
+      }
     }
   })
 ]), document.body);

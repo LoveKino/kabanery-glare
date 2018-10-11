@@ -10,7 +10,7 @@ const {
   isObject
 } = require('./util');
 
-const defaultTheme = require('../theme/material')();
+const defaultTheme = require('../theme/base')();
 const noop = () => {};
 
 const copyTo = (obj1, obj2) => {

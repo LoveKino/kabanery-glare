@@ -2,6 +2,10 @@
  * define the default style for kabanery-glare
  */
 
+const {
+  mergeDeep
+} = require('../util/util');
+
 module.exports = (basics = {
   box: {
     margin: 0
@@ -25,6 +29,61 @@ module.exports = (basics = {
     }
   }
 }) => {
+  const btnBase = {
+    normal: {
+      border: 0,
+      margin: basics.box.margin,
+      boxSizing: 'border-box',
+      padding: '8px 16px',
+      minWidth: 64,
+      minHeight: 36,
+      fontSize: '0.875rem',
+      cursor: 'pointer',
+      letterSpacing: '0.02857em',
+      fontWeight: '500',
+      borderRadius: 4,
+      textTransform: 'uppercase',
+      lineHeight: '1.5',
+      outline: 0
+    },
+
+    hover: {
+      border: 0,
+      margin: basics.box.margin,
+      boxSizing: 'border-box',
+      padding: '8px 16px',
+      minWidth: 64,
+      minHeight: 36,
+      fontSize: '0.875rem',
+      cursor: 'pointer',
+      letterSpacing: '0.02857em',
+      fontWeight: '500',
+      borderRadius: 4,
+      textTransform: 'uppercase',
+      lineHeight: '1.5',
+      textDecoration: 'none',
+      outline: 0
+    },
+
+    active: {
+      border: 0,
+      margin: basics.box.margin,
+      boxSizing: 'border-box',
+      padding: '8px 16px',
+      minWidth: 64,
+      minHeight: 36,
+      fontSize: '0.875rem',
+      cursor: 'pointer',
+      letterSpacing: '0.02857em',
+      fontWeight: '500',
+      borderRadius: 4,
+      textTransform: 'uppercase',
+      lineHeight: '1.5',
+      textDecoration: 'none',
+      outline: 0
+    }
+  };
+
   return {
     TextField: {
       box: {
@@ -116,42 +175,60 @@ module.exports = (basics = {
 
     Button: {
       box: {
-        normal: {
-          margin: basics.box.margin,
-          boxSizing: 'border-box',
-          padding: '8px 16px',
-          minWidth: 64,
-          minHeight: 36,
-          fontSize: '0.875rem',
-          cursor: 'pointer',
-          letterSpacing: '0.02857em',
-          fontWeight: '500',
-          borderRadius: 4,
-          textTransform: 'uppercase',
-          lineHeight: '1.5',
-          color: 'rgba(0, 0, 0, 0.87)',
-          border: 0,
-          outline: 0
+        text: {
+          default: mergeDeep(btnBase, {
+            normal: {
+              color: 'rgba(0, 0, 0, 0.87)',
+            },
+            hover: {
+              color: 'rgba(0, 0, 0, 0.87)',
+              backgroundColor: 'rgba(0, 0, 0, 0.08)',
+            },
+            active: {
+              color: 'rgba(0, 0, 0, 0.87)',
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+            }
+          }),
+
+          primary: mergeDeep(btnBase, {
+            normal: {
+              color: '#2196f3'
+            },
+            hover: {
+              color: '#2196f3',
+              backgroundColor: 'rgba(33, 150, 243, 0.08)',
+            },
+            active: {
+              color: '#2196f3',
+              backgroundColor: 'rgba(33, 150, 243, 0.3)',
+            }
+          }),
+
+          secondary: mergeDeep(btnBase, {
+            normal: {
+              color: 'rgb(225, 0, 80)'
+            },
+            hover: {
+              color: 'rgb(225, 0, 80)',
+              backgroundColor: 'rgba(225, 0, 80, 0.08)',
+            },
+            active: {
+              color: 'rgb(225, 0, 80)',
+              backgroundColor: 'rgba(225, 0, 80, 0.3)',
+            }
+          })
         },
 
-        hover: {
-          margin: basics.box.margin,
-          boxSizing: 'border-box',
-          padding: '8px 16px',
-          minWidth: 64,
-          minHeight: 36,
-          fontSize: '0.875rem',
-          cursor: 'pointer',
-          letterSpacing: '0.02857em',
-          fontWeight: '500',
-          borderRadius: 4,
-          textTransform: 'uppercase',
-          lineHeight: '1.5',
-          color: 'rgba(0, 0, 0, 0.87)',
-          border: 0,
-          backgroundColor: 'rgba(0, 0, 0, 0.08)',
-          textDecoration: 'none',
-          outline: 0
+        contained: {
+          normal: {
+            border: 0,
+          },
+          hover: {
+            border: 0,
+          },
+          active: {
+            border: 0,
+          }
         }
       }
     }
