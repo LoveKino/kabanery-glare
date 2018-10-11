@@ -11,20 +11,19 @@ const {
 
 const Page = glareView(({
   props,
-  n
-}, ctx) => {
+  n,
+  bn
+}) => {
   return n('p', [
-    n(TextField, {
-      props: props.name,
-      onChange: (newTextProps) => {
-        ctx.update('props.name', newTextProps);
-      }
+    bn(TextField, {
+      propsPath: 'name',
+      doUpdate: true
     }),
     n('br'),
     n('code', `${props.name.value}`),
     n('br'),
-    n(Button, {
-      props: props.button
+    bn(Button, {
+      propsPath: 'button'
     }, 'a button')
   ]);
 });

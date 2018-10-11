@@ -4,6 +4,11 @@ const {
   n
 } = require('kabanery');
 const uuidv4 = require('uuid/v4');
+const {
+  get,
+  set,
+  isObject
+} = require('./util');
 
 const defaultTheme = require('../theme/material')();
 const noop = () => {};
@@ -73,7 +78,38 @@ module.exports = (render, {
      *
      * @param propsPath string a json path
      */
-    data.bn = (childView, propsPath, children) => {};
+    data.bn = (childView, {
+      propsPath,
+      onChildChange,
+      doUpdate = false
+    }, children) => {
+      // get child props by json path
+      // if child props is not exists, set default value
+      let childProps = get(data.props, propsPath);
+      if (!isObject(childProps)) {
+        childProps = {};
+        set(data.props, propsPath, childProps);
+      }
+      return childView({
+        props: childProps,
+        onChange: (newChildProps, e) => {
+          // update parent props
+          set(data.props, propsPath, newChildProps);
+          if (onChildChange) {
+            onChildChange(newChildProps, e);
+          }
+          if (doUpdate) {
+            ctx.update();
+          }
+          data.onChange(data.props, e);
+        },
+        onEvent: (e) => {
+          data.onEvent(e);
+        },
+        theme: data.theme,
+        children
+      });
+    };
 
     return render(data, ctx);
   });

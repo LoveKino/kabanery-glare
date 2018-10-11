@@ -16,6 +16,49 @@ const mergeDeep = (obj1, obj2) => {
   return obj2;
 };
 
+const isObject = (v) => v && typeof v === 'object';
+
+const set = (sandbox, name = '', value) => {
+  name = name.trim();
+  const parts = !name ? [] : name.split('.');
+  let parent = sandbox;
+  if (!isObject(parent)) return;
+  if (!parts.length) return;
+  for (let i = 0; i < parts.length - 1; i++) {
+    let part = parts[i];
+    let next = parent[part];
+    if (!isObject(next)) {
+      next = {};
+      parent[part] = next;
+    }
+    parent = next;
+  }
+
+  parent[parts[parts.length - 1]] = value;
+  return sandbox;
+};
+
+/**
+ * a.b.c
+ */
+const get = (sandbox, name = '') => {
+  name = name.trim();
+  let parts = !name ? [] : name.split('.');
+
+  let parent = sandbox;
+
+  for (let i = 0; i < parts.length; i++) {
+    const part = parts[i];
+    if (!isObject(parent)) return undefined;
+    parent = sandbox[part];
+  }
+
+  return parent;
+};
+
 module.exports = {
-  mergeDeep
+  mergeDeep,
+  set,
+  get,
+  isObject
 };
