@@ -220,15 +220,68 @@ module.exports = (basics = {
         },
 
         contained: {
-          normal: {
-            border: 0,
-          },
-          hover: {
-            border: 0,
-          },
-          active: {
-            border: 0,
-          }
+          default: mergeDeep(btnBase, {
+            normal: {
+              border: 0,
+              color: 'rgba(0, 0, 0, 0.87)',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#e0e0e0'
+            },
+            hover: {
+              border: 0,
+              color: 'rgba(0, 0, 0, 0.87)',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#d5d5d5'
+            },
+            active: {
+              border: 0,
+              color: 'rgba(0, 0, 0, 0.87)',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#e0e0e0'
+            }
+          }),
+
+          primary: mergeDeep(btnBase, {
+            normal: {
+              border: 0,
+              color: '#fff',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#2196f3'
+            },
+            hover: {
+              border: 0,
+              color: '#fff',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#1976d2'
+            },
+            active: {
+              border: 0,
+              color: '#fff',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: '#2196f3'
+            }
+          }),
+
+          secondary: mergeDeep(btnBase, {
+            normal: {
+              border: 0,
+              color: '#fff',
+              backgroundColor: 'rgb(225, 0, 80)',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)'
+            },
+            hover: {
+              border: 0,
+              color: '#fff',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: 'rgb(157, 0, 56)'
+            },
+            active: {
+              border: 0,
+              color: '#fff',
+              boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
+              backgroundColor: 'rgb(225, 0, 80)'
+            }
+          })
         }
       }
     }

@@ -30,6 +30,16 @@ const Page = glareView(({
     }, 'primary button'),
     bn(Button, {
       propsPath: 'button3'
+    }, 'secondary button'),
+
+    bn(Button, {
+      propsPath: 'button4'
+    }, 'default button'),
+    bn(Button, {
+      propsPath: 'button5'
+    }, 'primary button'),
+    bn(Button, {
+      propsPath: 'button6'
     }, 'secondary button')
   ]);
 });
@@ -47,7 +57,18 @@ mount(n('div', [
       },
       button3: {
         color: 'secondary'
-      }
+      },
+      button4: {
+        type: 'contained'
+      },
+      button5: {
+        color: 'primary',
+        type: 'contained'
+      },
+      button6: {
+        color: 'secondary',
+        type: 'contained'
+      },
     }
   })
 ]), document.body);
