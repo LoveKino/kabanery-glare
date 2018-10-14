@@ -84,6 +84,24 @@ module.exports = (basics = {
     }
   };
 
+
+  const badgeBase = {
+    width: 22,
+    height: 22,
+    top: -11,
+    right: -11,
+    display: 'flex',
+    zIndex: 1,
+    position: 'absolute',
+    flexWrap: 'wrap',
+    fontSize: '0.75rem',
+    alignItems: 'center',
+    borderRadius: '50%',
+    alignContent: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  };
+
   return {
     TextField: {
       box: {
@@ -295,6 +313,25 @@ module.exports = (basics = {
       border: 'none',
       flexShrink: 0,
       backgroundColor: 'rgba(0, 0, 0, 0.12)'
+    },
+
+    Badge: {
+      box: {
+        display: 'inline-flex',
+        position: 'relative',
+        verticalAlign: 'middle'
+      },
+
+      badge: {
+        primary: Object.assign({
+          color: '#fff',
+          backgroundColor: '#2196f3'
+        }, badgeBase),
+        secondary: Object.assign({
+          color: '#fff',
+          backgroundColor: 'rgb(225, 0, 80)'
+        }, badgeBase)
+      }
     }
   };
 };

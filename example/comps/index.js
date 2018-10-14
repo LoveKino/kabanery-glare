@@ -1,6 +1,7 @@
 const TextField = require('../../src/base/TextField');
 const Button = require('../../src/base/Button');
 const Divider = require('../../src/base/Divider');
+const Badge = require('../../src/base/Badge');
 const {
   glareView
 } = require('../../src');
@@ -58,7 +59,24 @@ const Page = glareView(({
     // divider
     bn(Divider, {
       propsPath: 'divider'
-    })
+    }),
+
+    // badge
+    bn(Badge, {
+      propsPath: 'badge1'
+    }, [
+      bn(Button, {
+        propsPath: 'badge1-test-button'
+      }, 'badge button')
+    ]),
+
+    bn(Badge, {
+      propsPath: 'badge2'
+    }, [
+      bn(Button, {
+        propsPath: 'badge2-test-button'
+      }, 'badge button')
+    ])
   ]);
 });
 
@@ -87,6 +105,20 @@ mount(n('div', [
         color: 'secondary',
         type: 'contained'
       },
+      badge1: {
+        content: '4'
+      },
+      'badge1-test-button': {
+        color: 'primary',
+        type: 'contained'
+      },
+      badge2: {
+        content: '10',
+        color: 'secondary'
+      },
+      'badge2-test-button': {
+        color: 'primary'
+      }
     }
   })
 ]), document.body);
