@@ -81,6 +81,7 @@ module.exports = (render, {
     data.bn = (childView, {
       propsPath,
       onChildChange,
+      onChildEvent,
       doUpdate = false
     }, children) => {
       // get child props by json path
@@ -104,6 +105,9 @@ module.exports = (render, {
           data.onChange(data.props, e);
         },
         onEvent: (e) => {
+          if (onChildEvent) {
+            onChildEvent(e);
+          }
           data.onEvent(e);
         },
         theme: data.theme,

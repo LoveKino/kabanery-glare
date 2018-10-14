@@ -22,6 +22,8 @@ const Page = glareView(({
     n('br'),
     n('code', `${props.name.value}`),
     n('br'),
+
+    // buttons
     bn(Button, {
       propsPath: 'button1'
     }, 'default button'),
