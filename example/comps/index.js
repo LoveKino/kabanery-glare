@@ -1,13 +1,14 @@
 const TextField = require('../../src/base/TextField');
-const Button = require('../../src/base/button');
+const Button = require('../../src/base/Button');
+const Divider = require('../../src/base/Divider');
 const {
   glareView
 } = require('../../src');
-
 const {
   mount,
   n
 } = require('kabanery');
+const log = console.log; // eslint-disable-line
 
 const Page = glareView(({
   props,
@@ -15,6 +16,7 @@ const Page = glareView(({
   bn
 }) => {
   return n('p', [
+    // text field
     bn(TextField, {
       propsPath: 'name',
       doUpdate: true
@@ -25,24 +27,38 @@ const Page = glareView(({
 
     // buttons
     bn(Button, {
-      propsPath: 'button1'
+      propsPath: 'button1',
+      onChildEvent: (e) => e.type === 'click' && log(e.type)
     }, 'default button'),
     bn(Button, {
-      propsPath: 'button2'
+      propsPath: 'button2',
+      onChildEvent: (e) => e.type === 'click' && log(e.type)
     }, 'primary button'),
     bn(Button, {
-      propsPath: 'button3'
+      propsPath: 'button3',
+      onChildEvent: (e) => e.type === 'click' && log(e.type)
     }, 'secondary button'),
 
     bn(Button, {
-      propsPath: 'button4'
+      propsPath: 'button4',
+      onChildEvent: (e) => e.type === 'click' && log(e.type)
     }, 'default button'),
     bn(Button, {
-      propsPath: 'button5'
+      propsPath: 'button5',
+      onChildEvent: (e) => e.type === 'click' && log(e.type)
     }, 'primary button'),
     bn(Button, {
-      propsPath: 'button6'
-    }, 'secondary button')
+      propsPath: 'button6',
+      onChildEvent: (e) => e.type === 'click' && log(e.type)
+    }, 'secondary button'),
+
+    n('br'),
+    n('br'),
+
+    // divider
+    bn(Divider, {
+      propsPath: 'divider'
+    })
   ]);
 });
 

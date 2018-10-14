@@ -173,6 +173,7 @@ module.exports = (basics = {
       }
     },
 
+    // style for button
     Button: {
       box: {
         text: {
@@ -284,6 +285,16 @@ module.exports = (basics = {
           })
         }
       }
+    },
+
+    // divider style
+    Divider: {
+      height: 1,
+      margin: 0,
+      padding: 0,
+      border: 'none',
+      flexShrink: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.12)'
     }
   };
 };
