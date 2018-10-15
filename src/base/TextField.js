@@ -62,7 +62,7 @@ module.exports = glareView(({
       oninput: (e) => {
         if (e.target.value !== props.value) {
           props.value = e.target.value;
-          onChange(props, e); // onChange should always report the change
+          onChange(props, ctx, e); // onChange should always report the change
         }
 
         onEvent({

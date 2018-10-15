@@ -17,7 +17,8 @@ module.exports = (basics = {
       small: '0.75rem'
     },
     color: {
-      placeholder: 'rgba(0, 0, 0, 0.54)'
+      placeholder: 'rgba(0, 0, 0, 0.54)',
+      normal: 'rgba(0, 0, 0, 0.87)'
     }
   },
 
@@ -84,7 +85,6 @@ module.exports = (basics = {
     }
   };
 
-
   const badgeBase = {
     width: 22,
     height: 22,
@@ -100,6 +100,16 @@ module.exports = (basics = {
     alignContent: 'center',
     flexDirection: 'row',
     justifyContent: 'center'
+  };
+
+  const checkboxBase = {
+    margin: '0 12px 0 0',
+    padding: 0,
+    width: 18,
+    height: '100%',
+    borderRadius: 2,
+    position: 'relative',
+    boxSizing: 'border-box'
   };
 
   return {
@@ -197,14 +207,14 @@ module.exports = (basics = {
         text: {
           default: mergeDeep(btnBase, {
             normal: {
-              color: 'rgba(0, 0, 0, 0.87)',
+              color: basics.font.color.normal,
             },
             hover: {
-              color: 'rgba(0, 0, 0, 0.87)',
+              color: basics.font.color.normal,
               backgroundColor: 'rgba(0, 0, 0, 0.08)',
             },
             active: {
-              color: 'rgba(0, 0, 0, 0.87)',
+              color: basics.font.color.normal,
               backgroundColor: 'rgba(0, 0, 0, 0.3)',
             }
           }),
@@ -242,19 +252,19 @@ module.exports = (basics = {
           default: mergeDeep(btnBase, {
             normal: {
               border: 0,
-              color: 'rgba(0, 0, 0, 0.87)',
+              color: basics.font.color.normal,
               boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
               backgroundColor: '#e0e0e0'
             },
             hover: {
               border: 0,
-              color: 'rgba(0, 0, 0, 0.87)',
+              color: basics.font.color.normal,
               boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
               backgroundColor: '#d5d5d5'
             },
             active: {
               border: 0,
-              color: 'rgba(0, 0, 0, 0.87)',
+              color: basics.font.color.normal,
               boxShadow: '0px 1px 5px 0px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.12)',
               backgroundColor: '#e0e0e0'
             }
@@ -331,6 +341,57 @@ module.exports = (basics = {
           color: '#fff',
           backgroundColor: 'rgb(225, 0, 80)'
         }, badgeBase)
+      }
+    },
+
+    // checkbox style
+    Checkbox: {
+      box: {
+        margin: 0,
+        padding: 0,
+        position: 'relative',
+        display: 'inline-flex',
+        cursor: 'pointer',
+        alignItems: 'center',
+        verticalAlign: 'middle',
+        height: 18,
+        lineHeight: 18
+      },
+      checkbox: {
+        default: {
+          unchecked: Object.assign({
+            border: '2px solid rgba(0, 0, 0, 0.54)'
+          }, checkboxBase),
+          checked: Object.assign({
+            border: '2px solid rgba(0, 0, 0, 0)',
+            backgroundColor: 'rgba(0, 0, 0, 0.54)'
+          }, checkboxBase)
+        },
+        primary: {
+          unchecked: Object.assign({
+            border: '2px solid rgba(0, 0, 0, 0.54)'
+          }, checkboxBase),
+          checked: Object.assign({
+            border: '2px solid #2196f3',
+            backgroundColor: '#2196f3'
+          }, checkboxBase)
+        },
+        secondary: {
+          unchecked: Object.assign({
+            border: '2px solid rgba(0, 0, 0, 0.54)'
+          }, checkboxBase),
+          checked: Object.assign({
+            border: '2px solid rgb(225, 0, 80)',
+            backgroundColor: 'rgb(225, 0, 80)'
+          }, checkboxBase)
+        }
+      },
+      label: {
+        color: basics.font.color.normal,
+        fontSize: '0.875rem',
+        fontWeight: '400',
+        lineHeight: '1.5',
+        letterSpacing: '0.01071em'
       }
     }
   };

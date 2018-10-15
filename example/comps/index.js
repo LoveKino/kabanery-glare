@@ -2,6 +2,7 @@ const TextField = require('../../src/base/TextField');
 const Button = require('../../src/base/Button');
 const Divider = require('../../src/base/Divider');
 const Badge = require('../../src/base/Badge');
+const Checkbox = require('../../src/base/Checkbox');
 const {
   glareView
 } = require('../../src');
@@ -76,7 +77,18 @@ const Page = glareView(({
       bn(Button, {
         propsPath: 'badge2-test-button'
       }, 'badge button')
-    ])
+    ]),
+
+    // checkbox
+    bn(Checkbox, {
+      propsPath: 'checkbox1'
+    }),
+    bn(Checkbox, {
+      propsPath: 'checkbox2'
+    }),
+    bn(Checkbox, {
+      propsPath: 'checkbox3'
+    })
   ]);
 });
 
@@ -118,6 +130,21 @@ mount(n('div', [
       },
       'badge2-test-button': {
         color: 'primary'
+      },
+
+      'checkbox1': {
+        label: 'default',
+        checked: true
+      },
+      'checkbox2': {
+        label: 'primary',
+        color: 'primary',
+        checked: true
+      },
+      'checkbox3': {
+        label: 'secondary',
+        color: 'secondary',
+        checked: true
       }
     }
   })
