@@ -1,4 +1,10 @@
 const TextField = require('../../src/base/TextField');
+const Text = require('../../src/base/Text');
+const {
+  Row,
+  // RowLeftAlign
+} = require('../../src/base/Row');
+const Br = require('../../src/base/br');
 const Button = require('../../src/base/Button');
 const Divider = require('../../src/base/Divider');
 const Badge = require('../../src/base/Badge');
@@ -12,47 +18,71 @@ const {
 } = require('kabanery');
 const log = console.log; // eslint-disable-line
 
+const IntroduceView = glareView(({
+  props,
+  n,
+  children
+}) => {
+  return n('div', [
+    n(Text, {
+      props: {
+        type: 'h2',
+      }
+    }, props.title),
+    n(Br),
+    children
+  ]);
+}, {});
+
 const Page = glareView(({
   props,
   n,
   bn
 }) => {
   return n('p', [
-    // text field
-    bn(TextField, {
-      propsPath: 'name',
-      doUpdate: true
-    }),
-    n('br'),
-    n('code', `${props.name.value}`),
-    n('br'),
+    n(IntroduceView, {
+      props: {
+        title: 'TextField'
+      }
+    }, [
+      // text field
+      bn(TextField, {
+        propsPath: 'name',
+        doUpdate: true
+      }),
+      n(Br),
+      n(Text, `${props.name.value}`),
+    ]),
 
     // buttons
-    bn(Button, {
-      propsPath: 'button1',
-      onChildEvent: (e) => e.type === 'click' && log(e.type)
-    }, 'default button'),
-    bn(Button, {
-      propsPath: 'button2',
-      onChildEvent: (e) => e.type === 'click' && log(e.type)
-    }, 'primary button'),
-    bn(Button, {
-      propsPath: 'button3',
-      onChildEvent: (e) => e.type === 'click' && log(e.type)
-    }, 'secondary button'),
+    n(Row, [
+      bn(Button, {
+        propsPath: 'button1',
+        onChildEvent: (e) => e.type === 'click' && log(e.type)
+      }, 'default button'),
+      bn(Button, {
+        propsPath: 'button2',
+        onChildEvent: (e) => e.type === 'click' && log(e.type)
+      }, 'primary button'),
+      bn(Button, {
+        propsPath: 'button3',
+        onChildEvent: (e) => e.type === 'click' && log(e.type)
+      }, 'secondary button'),
 
-    bn(Button, {
-      propsPath: 'button4',
-      onChildEvent: (e) => e.type === 'click' && log(e.type)
-    }, 'default button'),
-    bn(Button, {
-      propsPath: 'button5',
-      onChildEvent: (e) => e.type === 'click' && log(e.type)
-    }, 'primary button'),
-    bn(Button, {
-      propsPath: 'button6',
-      onChildEvent: (e) => e.type === 'click' && log(e.type)
-    }, 'secondary button'),
+      bn(Button, {
+        propsPath: 'button4',
+        onChildEvent: (e) => e.type === 'click' && log(e.type)
+      }, 'default button'),
+
+      bn(Button, {
+        propsPath: 'button5',
+        onChildEvent: (e) => e.type === 'click' && log(e.type)
+      }, 'primary button'),
+      bn(Button, {
+        propsPath: 'button6',
+        onChildEvent: (e) => e.type === 'click' && log(e.type)
+      }, 'secondary button'),
+    ]),
 
     n('br'),
     n('br'),

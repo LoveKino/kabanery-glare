@@ -393,6 +393,40 @@ module.exports = (basics = {
         lineHeight: '1.5',
         letterSpacing: '0.01071em'
       }
+    },
+
+    Text: {
+      default: {
+        color: basics.font.color.normal,
+      },
+      h2: {
+        color: basics.font.color.normal,
+        fontSize: '2.125rem',
+        fontWeight: '400',
+        lineHeight: '1.17',
+        letterSpacing: '0.00735em',
+        margin: 0,
+        padding: '32px 0 24px',
+        display: 'inline-flex'
+      }
+    },
+    Br: {},
+    Row: {
+      box: {
+        display: 'inline-block',
+        position: 'relative',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box'
+      }
+    },
+    RowLeftAlign: {
+      box: {
+        position: 'relative',
+        margin: 0,
+        padding: 0,
+        boxSizing: 'border-box'
+      }
     }
   };
 };
