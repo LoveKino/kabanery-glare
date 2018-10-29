@@ -1,9 +1,5 @@
 const TextField = require('../../src/base/TextField');
 const Text = require('../../src/base/Text');
-const {
-  Row,
-  // RowLeftAlign
-} = require('../../src/base/Row');
 const Br = require('../../src/base/br');
 const Button = require('../../src/base/Button');
 const Divider = require('../../src/base/Divider');
@@ -55,7 +51,11 @@ const Page = glareView(({
     ]),
 
     // buttons
-    n(Row, [
+    n(IntroduceView, {
+      props: {
+        title: 'Button'
+      }
+    }, [
       bn(Button, {
         propsPath: 'button1',
         onChildEvent: (e) => e.type === 'click' && log(e.type)
@@ -84,41 +84,56 @@ const Page = glareView(({
       }, 'secondary button'),
     ]),
 
-    n('br'),
-    n('br'),
-
-    // divider
-    bn(Divider, {
-      propsPath: 'divider'
-    }),
-
-    // badge
-    bn(Badge, {
-      propsPath: 'badge1'
+    n(IntroduceView, {
+      props: {
+        title: 'Divider'
+      }
     }, [
-      bn(Button, {
-        propsPath: 'badge1-test-button'
-      }, 'badge button')
+      // divider
+      bn(Divider, {
+        propsPath: 'divider'
+      })
     ]),
 
-    bn(Badge, {
-      propsPath: 'badge2'
+    n(IntroduceView, {
+      props: {
+        title: 'Badge'
+      }
     }, [
-      bn(Button, {
-        propsPath: 'badge2-test-button'
-      }, 'badge button')
+      // badge
+      bn(Badge, {
+        propsPath: 'badge1'
+      }, [
+        bn(Button, {
+          propsPath: 'badge1-test-button'
+        }, 'badge button')
+      ]),
+
+      bn(Badge, {
+        propsPath: 'badge2'
+      }, [
+        bn(Button, {
+          propsPath: 'badge2-test-button'
+        }, 'badge button')
+      ])
     ]),
 
-    // checkbox
-    bn(Checkbox, {
-      propsPath: 'checkbox1'
-    }),
-    bn(Checkbox, {
-      propsPath: 'checkbox2'
-    }),
-    bn(Checkbox, {
-      propsPath: 'checkbox3'
-    })
+    n(IntroduceView, {
+      props: {
+        title: 'Checkbox'
+      }
+    }, [
+      // checkbox
+      bn(Checkbox, {
+        propsPath: 'checkbox1'
+      }),
+      bn(Checkbox, {
+        propsPath: 'checkbox2'
+      }),
+      bn(Checkbox, {
+        propsPath: 'checkbox3'
+      })
+    ])
   ]);
 });
 

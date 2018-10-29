@@ -410,23 +410,6 @@ module.exports = (basics = {
         display: 'inline-flex'
       }
     },
-    Br: {},
-    Row: {
-      box: {
-        display: 'inline-block',
-        position: 'relative',
-        margin: 0,
-        padding: 0,
-        boxSizing: 'border-box'
-      }
-    },
-    RowLeftAlign: {
-      box: {
-        position: 'relative',
-        margin: 0,
-        padding: 0,
-        boxSizing: 'border-box'
-      }
-    }
+    Br: {}
   };
 };
