@@ -1,6 +1,6 @@
 {
   "name": "kabanery-glare",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A web component library based on kabanery",
   "main": "index.js",
   "scripts": {
@@ -24,5 +24,8 @@
   "dependencies": {
     "kabanery": "^0.2.24",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }

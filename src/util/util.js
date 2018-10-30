@@ -48,9 +48,9 @@ const get = (sandbox, name = '') => {
   let parent = sandbox;
 
   for (let i = 0; i < parts.length; i++) {
-    const part = parts[i];
     if (!isObject(parent)) return undefined;
-    parent = sandbox[part];
+    const part = parts[i];
+    parent = parent[part];
   }
 
   return parent;
