@@ -30,7 +30,6 @@ const ToolBarLeft = glareView(({
   n,
   children
 }) => {
-  console.log(children)
   return n('span', {
     style: props.style[props.color]
   }, children);

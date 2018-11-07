@@ -1,6 +1,6 @@
 {
   "name": "kabanery-glare",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A web component library based on kabanery",
   "main": "index.js",
   "scripts": {
