@@ -208,6 +208,7 @@ module.exports = (basics = {
           default: mergeDeep(btnBase, {
             normal: {
               color: basics.font.color.normal,
+              backgroundColor: 'transparent'
             },
             hover: {
               color: basics.font.color.normal,
@@ -221,7 +222,8 @@ module.exports = (basics = {
 
           primary: mergeDeep(btnBase, {
             normal: {
-              color: '#2196f3'
+              color: '#2196f3',
+              backgroundColor: 'transparent'
             },
             hover: {
               color: '#2196f3',
@@ -410,6 +412,51 @@ module.exports = (basics = {
         display: 'inline-flex'
       }
     },
-    Br: {}
+    Br: {},
+    ToolBar: {
+      box: {
+        boxShadow: '0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12)',
+        minHeight: 64,
+        boxSizing: 'border-box',
+        paddingLeft: 24,
+        paddingRight: 24,
+        display: 'flex',
+        alignItems: 'center'
+      },
+      toolBar: {
+        primary: {
+          backgroundColor: '#2196f3',
+          color: 'white'
+        },
+        default: {
+          backgroundColor: '#f5f5f5',
+          color: 'rgba(0, 0, 0, 0.87)'
+        }
+      },
+
+      title: {
+        flexGrow: '1',
+        fontSize: '1.25rem',
+        fontWeight: '500',
+        lineHeight: 1.6,
+        letterSpacing: '0.0075em'
+      }
+    },
+    ToolBarLeft: {
+      primary: {
+        marginRight: 12
+      },
+      default: {
+        marginRight: 12
+      }
+    },
+    ToolBarRight: {
+      primary: {
+        marginLeft: 12
+      },
+      default: {
+        marginLeft: 12
+      }
+    }
   };
 };

@@ -1,10 +1,15 @@
-const TextField = require('../../src/base/TextField');
-const Text = require('../../src/base/Text');
-const Br = require('../../src/base/br');
-const Button = require('../../src/base/Button');
-const Divider = require('../../src/base/Divider');
-const Badge = require('../../src/base/Badge');
-const Checkbox = require('../../src/base/Checkbox');
+const TextField = require('../../src/view/TextField');
+const Text = require('../../src/view/Text');
+const Br = require('../../src/view/br');
+const Button = require('../../src/view/Button');
+const Divider = require('../../src/view/Divider');
+const Badge = require('../../src/view/Badge');
+const Checkbox = require('../../src/view/Checkbox');
+const {
+  ToolBar,
+  ToolBarLeft,
+  ToolBarRight
+} = require('../../src/view/ToolBar');
 const {
   glareView
 } = require('../../src');
@@ -133,6 +138,45 @@ const Page = glareView(({
       bn(Checkbox, {
         propsPath: 'checkbox3'
       })
+    ]),
+
+    n(IntroduceView, {
+      props: {
+        title: 'ToolBar'
+      }
+    }, [
+      // checkbox
+      bn(ToolBar, {
+        propsPath: 'toolbar1'
+      }, [
+        n(ToolBarLeft, [n(Button, 'leftBtn1')]),
+        n(ToolBarRight, [
+          n(Button, 'rightBtn1')
+        ])
+      ]),
+
+      n(Br),
+
+      bn(ToolBar, {
+        propsPath: 'toolbar2'
+      }, [
+        n(ToolBarLeft, [
+          n(Button, [n('span', {
+            style: {
+              color: 'white'
+            }
+          }, 'l_btn1')])
+        ]),
+
+
+        n(ToolBarRight, [
+          n(Button, [n('span', {
+            style: {
+              color: 'white'
+            }
+          }, 'r_btn1')])
+        ])
+      ])
     ])
   ]);
 });
@@ -190,6 +234,13 @@ mount(n('div', [
         label: 'secondary',
         color: 'secondary',
         checked: true
+      },
+      'toolbar1': {
+        title: 'App Name'
+      },
+      'toolbar2': {
+        title: 'App Name',
+        color: 'primary'
       }
     }
   })
