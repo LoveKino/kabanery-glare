@@ -11,11 +11,11 @@ const ToolBar = glareView(({
   return n('div', {
     style: Object.assign({}, props.style.box, props.style.toolBar[props.color])
   }, [
-    children[0],
+    children && children[0],
     n('span', {
       style: props.style.title
     }, props.title),
-    children[1]
+    children && children[1]
   ]);
 }, {
   id: 'ToolBar',
